@@ -1,0 +1,11 @@
+- name: Build
+        run: npm run build
+        env:
+          # GitHub Secrets에 저장한 값을 빌드 환경 변수로 주입
+          VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist' # 빌드 결과물이 저장되는 폴더
